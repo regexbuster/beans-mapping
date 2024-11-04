@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@googlemaps/polyline-codec": "^1.0.28",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "mapbox-gl": "^3.7.0",
+    "react": "^19.0.0-rc-7c8e5e7a-20241101",
+    "react-dom": "^19.0.0-rc-7c8e5e7a-20241101",
+    "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -15,7 +18,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker-build": "react-scripts build && docker build -t custom-nginx ./docker",
+    "box-up": "npm run build && docker build -t custom-nginx ./docker && npm run nginx-end && npm run nginx",
+    "nginx": "docker run --name beans-nginx -v ./build:/usr/share/nginx/html:ro -p 8080:80 -d custom-nginx",
+    "nginx-end": "docker container stop beans-nginx && docker container remove beans-nginx"
   },
   "eslintConfig": {
     "extends": [
