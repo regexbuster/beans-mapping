@@ -15,56 +15,61 @@ import StaticMap from "./Map/Static/StaticMap";
 import Polyline from "./Polyline/Polyline";
 import Bleaching from "./Polyline/Bleaching/Bleaching";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Root />,
+      errorElement: <ErrorPage />,
+      children: [
+        { index: true, element: <Index opts={window.location.search} /> },
+        {
+          path: "about",
+          element: <p>About</p>,
+        },
+        {
+          path: "polyline",
+          element: <Polyline />,
+        },
+        {
+          path: "polyline/bleaching",
+          element: <Bleaching />,
+        },
+      ],
+    },
+    {
+      path: "map",
+      element: (
+        <>
+          <Outlet />
+        </>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "",
+          element: (
+            <p>
+              If you've used the polying and bleaching tools try extending the
+              url with the polyline for a dynamic map! (/map/dynamic/[polyline])
+            </p>
+          ),
+        },
+        {
+          path: "static/:aspectRatio/:encodedPolyline",
+          element: <StaticMap />,
+        },
+        {
+          path: "dynamic/:encodedPolyline",
+          element: <DynamicMap />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <Index opts={window.location.search} /> },
-      {
-        path: "about",
-        element: <p>About</p>,
-      },
-      {
-        path: "polyline",
-        element: <Polyline />,
-      },
-      {
-        path: "polyline/bleaching",
-        element: <Bleaching />,
-      },
-    ],
-  },
-  {
-    path: "map",
-    element: (
-      <>
-        <Outlet />
-      </>
-    ),
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "",
-        element: (
-          <p>
-            If you've used the polying and bleaching tools try extending the url
-            with the polyline for a dynamic map! (/map/dynamic/[polyline])
-          </p>
-        ),
-      },
-      {
-        path: "static/:aspectRatio/:encodedPolyline",
-        element: <StaticMap />,
-      },
-      {
-        path: "dynamic/:encodedPolyline",
-        element: <DynamicMap />,
-      },
-    ],
-  },
-]);
+    basename: "/beans",
+  }
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

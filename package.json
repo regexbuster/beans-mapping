@@ -1,6 +1,7 @@
 {
   "name": "beans-mapping",
   "version": "0.1.0",
+  "homepage": "/beans",
   "private": true,
   "dependencies": {
     "@googlemaps/polyline-codec": "^1.0.28",
@@ -21,7 +22,7 @@
     "eject": "react-scripts eject",
     "docker-build": "react-scripts build && docker build -t custom-nginx ./docker",
     "box-up": "npm run build && docker build -t custom-nginx ./docker && npm run nginx-end && npm run nginx",
-    "nginx": "docker run --name beans-nginx -v ./build:/usr/share/nginx/html:ro -p 8080:80 -d custom-nginx",
+    "nginx": "docker run --name beans-nginx -v ./build:/usr/share/nginx/html/beans:ro -p 8080:80 -d custom-nginx",
     "nginx-end": "docker container stop beans-nginx && docker container remove beans-nginx"
   },
   "eslintConfig": {
