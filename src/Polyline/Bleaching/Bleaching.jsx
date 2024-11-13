@@ -49,8 +49,14 @@ export default function Bleaching() {
       <h1>Decoding Bleaching Data</h1>
       <p>
         Get you bleaching data from{" "}
-        <a href="https://ready4l4s.cerfca.st/diagnose">here</a> if you want to
-        use this tool.
+        <a
+          href="https://ready4l4s.cerfca.st/diagnose"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          here
+        </a>{" "}
+        if you want to use this tool.
       </p>
 
       <form action={parse}>

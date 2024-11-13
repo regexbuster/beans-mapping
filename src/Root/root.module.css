@@ -4,7 +4,7 @@
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-areas:
     "header header header"
-    "mainContent mainContent mainContent"
+    ". mainContent ."
     "footer footer footer";
 
   align-items: stretch;
